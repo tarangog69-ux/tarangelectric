@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Send, Phone, User, MessageSquare, CheckCircle2, AlertCircle, 
-  Loader2, MapPin, ArrowUpRight, ExternalLink, MessageCircle 
+  Loader2, MapPin, ArrowUpRight, ExternalLink, MessageCircle, Mail, FileText 
 } from 'lucide-react';
 import { supabase } from '../supabaseClient';
 
@@ -256,11 +256,11 @@ export const ContactForm = () => {
                 <h4 className="text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-4 flex items-center gap-2">
                   <MapPin className="text-[#D90429] w-4 h-4" /> Store Location
                 </h4>
-                <div className="text-[#0A1128] leading-relaxed text-base">
-                  <p className="font-bold text-lg mb-1">Tarang Electric</p>
-                  <p className="text-gray-700 font-medium">Shop No. 7 &amp; 8 Bhavika Complex</p>
-                  <p className="text-gray-600 font-light">Near ACPL Transport / Opposite Aarti Industries</p>
-                  <p className="text-gray-600 font-light">New G.I.D.C., Umbergaon – 396171</p>
+                <div className="text-[#0A1128] leading-relaxed text-base font-bold">
+                  <p className="text-xl mb-1 text-[#0033A0]">Tarang Electric</p>
+                  <p className="text-gray-900 font-bold">Shop No. 7 &amp; 8 Bhavika Complex</p>
+                  <p className="text-gray-900 font-bold">Near ACPL Transport / Opposite Aarti Industries</p>
+                  <p className="text-gray-900 font-bold">New G.I.D.C., Umbergaon – 396171</p>
                 </div>
               </div>
 
@@ -275,6 +275,20 @@ export const ContactForm = () => {
                   <a href={`tel:${STORE_PHONE2_TEL}`} className="font-bold text-[#0033A0] hover:underline text-lg flex items-center gap-2 mt-2">
                     <Phone size={16} /> {STORE_PHONE2}
                   </a>
+                </div>
+
+                <div className="pt-2 border-t border-gray-100">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Email Address</span>
+                  <a href="mailto:tarangelectric@gmail.com" className="font-bold text-[#0033A0] hover:underline text-base flex items-center gap-2">
+                    <Mail size={16} /> tarangelectric@gmail.com
+                  </a>
+                </div>
+
+                <div className="pt-2 border-t border-gray-100">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">GSTIN</span>
+                  <p className="font-bold text-gray-900 text-base flex items-center gap-2 font-mono tracking-wider">
+                    <FileText size={16} className="text-[#0033A0]" /> 24AGTPB6218J1ZA
+                  </p>
                 </div>
               </div>
 
