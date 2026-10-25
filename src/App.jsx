@@ -325,18 +325,22 @@ const LogoMarquee = () => {
           href="https://bchindia.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 bg-white/[0.08] hover:bg-white/[0.15] px-3.5 py-1.5 rounded-xl border border-white/20 transition-all shadow-md group/bch cursor-pointer"
+          className="flex items-center gap-3.5 bg-gradient-to-r from-red-950/40 via-blue-950/40 to-slate-900/60 hover:from-red-900/60 hover:to-blue-900/60 px-5 py-2.5 rounded-full border border-[#D90429]/50 hover:border-[#D90429] transition-all shadow-lg group/bch cursor-pointer"
         >
-          <svg viewBox="0 0 115 38" className="h-8 w-auto">
+          <svg viewBox="0 0 115 38" className="h-7 w-auto shrink-0">
             <rect x="2" y="4" width="111" height="30" rx="4" fill="#003366" />
             <text x="10" y="26" fill="#ffffff" fontFamily="sans-serif" fontWeight="900" fontSize="21" letterSpacing="1.5">BCH</text>
             <text x="66" y="24" fill="#e30613" fontFamily="sans-serif" fontWeight="900" fontSize="10" letterSpacing="0.5">ELECTRIC</text>
           </svg>
-          <div className="flex flex-col text-left">
-            <span className="text-[0.6rem] font-black uppercase tracking-wider text-[#D90429] bg-[#D90429]/15 px-2 py-0.5 rounded border border-[#D90429]/40 whitespace-nowrap">
-              OFFICIAL DISTRIBUTOR
+          <div className="h-5 w-px bg-white/20 shrink-0" />
+          <div className="flex items-center gap-2 text-xs shrink-0">
+            <span className="w-2 h-2 rounded-full bg-[#D90429] animate-pulse shrink-0" />
+            <span className="font-extrabold uppercase tracking-wider text-white text-[0.72rem] sm:text-xs whitespace-nowrap">
+              OFFICIAL DISTRIBUTOR OF <span className="text-[#D90429]">BCH ELECTRIC LIMITED (BCHINDIA.COM)</span>
             </span>
-            <span className="text-[0.55rem] font-bold text-gray-300 tracking-wider">bchindia.com</span>
+            <span className="text-gray-300 font-semibold tracking-wider uppercase text-[0.65rem] whitespace-nowrap">
+              &bull; SWITCHGEAR &bull; MOTOR STARTERS &bull; INDUSTRIAL CONTROL GEAR
+            </span>
           </div>
         </a>
       )
@@ -495,26 +499,6 @@ const LogoMarquee = () => {
       <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
 
-      {/* Official Distributor Banner */}
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 mb-6 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#D90429] animate-pulse shrink-0" />
-          <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-white">
-            Official Distributor of{" "}
-            <a 
-              href="https://bchindia.com/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[#D90429] hover:underline transition-colors"
-            >
-              BCH Electric Limited (bchindia.com)
-            </a>
-          </span>
-        </div>
-        <span className="text-[0.68rem] font-bold text-gray-400 tracking-widest uppercase hidden md:inline-block">
-          Switchgear &bull; Motor Starters &bull; Industrial Control Gear
-        </span>
-      </div>
 
       <div className="flex overflow-hidden whitespace-nowrap">
         <motion.div 
