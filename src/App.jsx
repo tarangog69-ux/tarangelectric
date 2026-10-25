@@ -1013,9 +1013,6 @@ const ElectricalRFQBanner = ({ onNavigateContact }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <div className="lg:col-span-8">
-            <span className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 mb-4">
-              DIRECT FACTORY PRICING &amp; DISCOUNTS
-            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-tight mb-4">
               NEED BRAND PRICE LISTS OR A CUSTOM ELECTRICAL BOM QUOTE?
             </h2>
