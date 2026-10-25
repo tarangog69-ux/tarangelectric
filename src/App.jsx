@@ -246,11 +246,6 @@ const Hero = ({ onExplore }) => {
           animate="visible"
           className="max-w-5xl pointer-events-auto"
         >
-          {/* Reference-inspired Industrial Electrical Badge */}
-          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md">
-            <Zap size={14} className="text-[#D90429]" />
-            INDUSTRIAL ELECTRICAL ITEM SUPPLIERS &amp; WHOLESALERS
-          </motion.div>
 
           <div className="space-y-3 mb-8">
             <div className="overflow-hidden pt-1">
