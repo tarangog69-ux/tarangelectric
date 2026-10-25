@@ -301,12 +301,12 @@ const Hero = ({ onExplore }) => {
               <p className="text-xs tracking-wider uppercase text-gray-400 mt-0.5">Tested &amp; Genuine</p>
             </div>
             <div>
-              <p className="text-white text-xl sm:text-2xl font-black">GIDC</p>
-              <p className="text-xs tracking-wider uppercase text-gray-400 mt-0.5">Ready-to-Ship Spares</p>
+              <p className="text-white text-xl sm:text-2xl font-black">READY</p>
+              <p className="text-xs tracking-wider uppercase text-gray-400 mt-0.5">Stock Available</p>
             </div>
             <div>
-              <p className="text-white text-xl sm:text-2xl font-black">BOM</p>
-              <p className="text-xs tracking-wider uppercase text-gray-400 mt-0.5">Specification Support</p>
+              <p className="text-white text-xl sm:text-2xl font-black">BEST</p>
+              <p className="text-xs tracking-wider uppercase text-gray-400 mt-0.5">Wholesale Rates</p>
             </div>
           </motion.div>
         </motion.div>
@@ -509,14 +509,14 @@ const QualityBanner = () => {
     },
     {
       icon: <Clock size={32} />,
-      title: "Ready GIDC Stock",
-      desc: "Immediate availability of urgent panel accessories and cables to eliminate plant downtime.",
+      title: "Ready Stock",
+      desc: "Immediate availability of essential electrical goods, cables, and panel accessories to eliminate plant downtime.",
       iconBg: "bg-amber-500/10 text-amber-600"
     },
     {
       icon: <FileText size={32} />,
-      title: "Technical BOM Support",
-      desc: "Expert quotation matching, brand-wise price lists, and switchboard specification support.",
+      title: "Competitive Wholesale Pricing",
+      desc: "Direct bulk trade pricing, transparent quotations, and tailored product recommendations for all projects.",
       iconBg: "bg-emerald-500/10 text-emerald-600"
     }
   ];
@@ -1014,10 +1014,10 @@ const ElectricalRFQBanner = ({ onNavigateContact }) => {
           
           <div className="lg:col-span-8">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-tight mb-4">
-              NEED BRAND PRICE LISTS OR A CUSTOM ELECTRICAL BOM QUOTE?
+              NEED BRAND PRICE LISTS OR A CUSTOM PROJECT QUOTATION?
             </h2>
             <p className="text-white/80 text-base sm:text-lg font-light leading-relaxed max-w-2xl">
-              Whether you need bulk quantity rates on Hex lugs, Polycab industrial cables, L&amp;T switchgear, or Jainson crimping tools — submit your bill of materials (BOM) for an instant quotation.
+              Whether you need bulk quantity rates on Hex lugs, Polycab industrial cables, L&amp;T switchgear, or Jainson crimping tools — submit your product requirements for an instant quotation.
             </p>
           </div>
 
@@ -1029,7 +1029,7 @@ const ElectricalRFQBanner = ({ onNavigateContact }) => {
               className="px-8 py-4 rounded-full bg-[#25D366] text-white hover:bg-[#20ba59] font-black text-xs md:text-sm uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl hover:scale-105 transition-all text-center"
             >
               <MessageCircle size={18} />
-              <span>WhatsApp BOM Quote</span>
+              <span>WhatsApp Instant Quote</span>
             </a>
 
             <button
