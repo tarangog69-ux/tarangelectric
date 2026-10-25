@@ -319,30 +319,14 @@ const Hero = ({ onExplore }) => {
 const LogoMarquee = () => {
   const brandLogos = [
     {
-      name: "BCH Electric",
+      name: "BCH Electric Limited",
       svg: (
-        <a
-          href="https://bchindia.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3.5 bg-gradient-to-r from-red-950/40 via-blue-950/40 to-slate-900/60 hover:from-red-900/60 hover:to-blue-900/60 px-5 py-2.5 rounded-full border border-[#D90429]/50 hover:border-[#D90429] transition-all shadow-lg group/bch cursor-pointer"
-        >
-          <svg viewBox="0 0 115 38" className="h-7 w-auto shrink-0">
-            <rect x="2" y="4" width="111" height="30" rx="4" fill="#003366" />
-            <text x="10" y="26" fill="#ffffff" fontFamily="sans-serif" fontWeight="900" fontSize="21" letterSpacing="1.5">BCH</text>
-            <text x="66" y="24" fill="#e30613" fontFamily="sans-serif" fontWeight="900" fontSize="10" letterSpacing="0.5">ELECTRIC</text>
-          </svg>
-          <div className="h-5 w-px bg-white/20 shrink-0" />
-          <div className="flex items-center gap-2 text-xs shrink-0">
-            <span className="w-2 h-2 rounded-full bg-[#D90429] animate-pulse shrink-0" />
-            <span className="font-extrabold uppercase tracking-wider text-white text-[0.72rem] sm:text-xs whitespace-nowrap">
-              OFFICIAL DISTRIBUTOR OF <span className="text-[#D90429]">BCH ELECTRIC LIMITED (BCHINDIA.COM)</span>
-            </span>
-            <span className="text-gray-300 font-semibold tracking-wider uppercase text-[0.65rem] whitespace-nowrap">
-              &bull; SWITCHGEAR &bull; MOTOR STARTERS &bull; INDUSTRIAL CONTROL GEAR
-            </span>
-          </div>
-        </a>
+        <svg viewBox="0 0 150 40" className="h-8 w-auto">
+          <rect x="2" y="6" width="56" height="28" rx="4" fill="#003366" />
+          <text x="8" y="27" fill="#ffffff" fontFamily="sans-serif" fontWeight="900" fontSize="19" letterSpacing="1.5">BCH</text>
+          <text x="66" y="21" fill="#e30613" fontFamily="sans-serif" fontWeight="900" fontSize="12" letterSpacing="1">ELECTRIC</text>
+          <text x="66" y="32" fill="#ffffff" fontFamily="sans-serif" fontWeight="700" fontSize="8" letterSpacing="0.8">LIMITED</text>
+        </svg>
       )
     },
     {
