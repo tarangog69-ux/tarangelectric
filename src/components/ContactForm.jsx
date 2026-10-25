@@ -17,8 +17,12 @@ export const ContactForm = () => {
   const [status, setStatus] = useState({ type: null, message: '' });
 
   const MAP_SHARE_LINK = "https://share.google/Bk2m217yEUFbqnkMR";
-  const STORE_PHONE = "+91 90995 60111";
-  const STORE_PHONE_TEL = "+919099560111";
+  const STORE_PHONE = "+91 26025 60679";
+  const STORE_PHONE2 = "+91 26025 61679";
+  const STORE_PHONE_TEL = "+912602560679";
+  const STORE_PHONE2_TEL = "+912602561679";
+  const STORE_WHATSAPP_PHONE = "+91 90995 60111";
+  const STORE_WHATSAPP_TEL = "+919099560111";
   const WHATSAPP_LINK = "https://wa.me/919099560111?text=Hello%20Tarang%20Electric,%20I%20have%20an%20inquiry%20regarding%20electrical%20products.";
 
   const handleChange = (e) => {
@@ -165,7 +169,7 @@ export const ContactForm = () => {
                   type="tel"
                   name="phone"
                   required
-                  placeholder="e.g. +91 90995 60111"
+                  placeholder="e.g. +91 26025 60679"
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-sm text-[#0A1128] placeholder-gray-400 focus:outline-none focus:border-[#0033A0] transition-colors"
@@ -230,8 +234,8 @@ export const ContactForm = () => {
                 <Phone size={18} className="text-emerald-200 shrink-0" />
                 <div>
                   <span className="text-[10px] uppercase font-bold text-emerald-200 block">WhatsApp Phone Number</span>
-                  <a href={`tel:${STORE_PHONE_TEL}`} className="font-bold text-white text-base hover:underline">
-                    {STORE_PHONE}
+                  <a href={`tel:${STORE_WHATSAPP_TEL}`} className="font-bold text-white text-base hover:underline">
+                    {STORE_WHATSAPP_PHONE}
                   </a>
                 </div>
               </div>
@@ -254,9 +258,9 @@ export const ContactForm = () => {
                 </h4>
                 <div className="text-[#0A1128] leading-relaxed text-base">
                   <p className="font-bold text-lg mb-1">Tarang Electric</p>
-                  <p className="text-gray-700 font-medium">Shop No-12, Maharaja Shopping Center,</p>
-                  <p className="text-gray-600 font-light">Nearby Ground Canteen, Umargam GIDC Estate,</p>
-                  <p className="text-gray-600 font-light">Umbergaon, Gujarat - 396171, India</p>
+                  <p className="text-gray-700 font-medium">Shop No. 7 &amp; 8 Bhavika Complex</p>
+                  <p className="text-gray-600 font-light">Near ACPL Transport / Opposite Aarti Industries</p>
+                  <p className="text-gray-600 font-light">New G.I.D.C., Umbergaon – 396171</p>
                 </div>
               </div>
 
@@ -267,6 +271,9 @@ export const ContactForm = () => {
                   <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Direct Phone Call</span>
                   <a href={`tel:${STORE_PHONE_TEL}`} className="font-bold text-[#0033A0] hover:underline text-lg flex items-center gap-2">
                     <Phone size={16} /> {STORE_PHONE}
+                  </a>
+                  <a href={`tel:${STORE_PHONE2_TEL}`} className="font-bold text-[#0033A0] hover:underline text-lg flex items-center gap-2 mt-2">
+                    <Phone size={16} /> {STORE_PHONE2}
                   </a>
                 </div>
               </div>
@@ -293,7 +300,7 @@ export const ContactForm = () => {
               <h3 className="text-lg sm:text-xl font-black uppercase text-[#0A1128] flex items-center gap-2">
                 <MapPin size={20} className="text-[#D90429] shrink-0" /> Exact Store Location on Google Maps
               </h3>
-              <p className="text-xs text-gray-500 mt-1">Shop No-12, Maharaja Shopping Center, Umargam GIDC Estate, Umbergaon</p>
+              <p className="text-xs text-gray-500 mt-1">Shop No. 7 &amp; 8 Bhavika Complex, Near ACPL Transport, New G.I.D.C., Umbergaon</p>
             </div>
             
             <a

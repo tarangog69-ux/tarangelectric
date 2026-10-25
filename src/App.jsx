@@ -30,7 +30,8 @@ const textReveal = {
 };
 
 const STORE_WHATSAPP_NUMBER = "919099560111";
-const STORE_PHONE = "+91 90995 60111";
+const STORE_PHONE = "+91 26025 60679";
+const STORE_PHONE2 = "+91 26025 61679";
 
 const BrandLogo = ({ className = "w-10 h-10" }) => (
   <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1099,12 +1100,17 @@ const Footer = ({ setActivePage, onNavigateShop }) => {
             </h4>
             <div className="text-white/60 font-light leading-relaxed text-sm space-y-1">
               <p className="font-bold text-white text-base mb-1">Tarang Electric</p>
-              <p>Shop No-12, Maharaja Shopping Center,</p>
-              <p>Nearby Ground Canteen, Umargam GIDC Estate,</p>
-              <p>Umbergaon, Gujarat - 396171, India</p>
+              <p>Shop No. 7 &amp; 8 Bhavika Complex</p>
+              <p>Near ACPL Transport / Opposite Aarti Industries</p>
+              <p>New G.I.D.C., Umbergaon – 396171</p>
               <p className="pt-2 text-white font-semibold">
                 <a href={`tel:${STORE_PHONE.replace(/\s+/g, '')}`} className="hover:text-[#D90429] transition-colors">
                   Phone: {STORE_PHONE}
+                </a>
+              </p>
+              <p className="text-white font-semibold">
+                <a href={`tel:${STORE_PHONE2.replace(/\s+/g, '')}`} className="hover:text-[#D90429] transition-colors">
+                  Phone: {STORE_PHONE2}
                 </a>
               </p>
             </div>
