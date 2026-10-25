@@ -33,15 +33,15 @@ const STORE_WHATSAPP_NUMBER = "919099560111";
 const STORE_PHONE = "+91 26025 60679";
 const STORE_PHONE2 = "+91 26025 61679";
 
-const BrandLogo = ({ className = "w-10 h-10" }) => (
-  <svg viewBox="0 0 100 100" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="42" stroke="#0033A0" strokeWidth="10" strokeDasharray="132 132" strokeDashoffset="0" strokeLinecap="round" />
-    <circle cx="50" cy="50" r="42" stroke="#D90429" strokeWidth="10" strokeDasharray="132 132" strokeDashoffset="-132" strokeLinecap="round" />
-    <path d="M 25 32 H 75" stroke="#0033A0" strokeWidth="11" strokeLinecap="round" />
-    <path d="M 45 32 V 76" stroke="#0033A0" strokeWidth="11" strokeLinecap="round" />
-    <path d="M 45 54 H 70" stroke="#D90429" strokeWidth="10" strokeLinecap="round" />
-    <path d="M 45 76 H 75" stroke="#D90429" strokeWidth="11" strokeLinecap="round" />
-  </svg>
+const BrandLogo = ({ className = "h-10 w-auto", dark = false }) => (
+  <div className={`inline-flex items-center justify-center rounded-xl p-1.5 transition-all ${dark ? 'bg-white/95 shadow-md shadow-black/20' : 'bg-white/90 shadow-sm'}`}>
+    <img 
+      src="/logo.png" 
+      alt="Tarang Electric Logo" 
+      className={`${className} object-contain`} 
+      loading="eager"
+    />
+  </div>
 );
 
 const Navbar = ({ activePage, setActivePage, onNavigateShop }) => {
@@ -83,10 +83,10 @@ const Navbar = ({ activePage, setActivePage, onNavigateShop }) => {
           
           <div 
             onClick={() => setActivePage('home')}
-            className="flex items-center gap-2 sm:gap-3 md:gap-4 cursor-pointer group justify-start min-w-0"
+            className="flex items-center gap-3 sm:gap-4 cursor-pointer group justify-start min-w-0"
           >
-            <motion.div whileHover={{ rotate: 180 }} transition={{ duration: 0.6, ease: EASE }} className="shrink-0">
-              <BrandLogo className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="shrink-0">
+              <BrandLogo className="h-8 sm:h-10 md:h-11 w-auto" dark={!scrolled && activePage === 'home'} />
             </motion.div>
             <div className="flex flex-col min-w-0">
               <h1 className={`text-lg sm:text-2xl md:text-3xl font-black tracking-tighter uppercase leading-none transition-colors duration-500 truncate ${scrolled || activePage !== 'home' ? 'text-[#0A1128]' : 'text-white'}`}>
@@ -1076,7 +1076,7 @@ const Footer = ({ setActivePage, onNavigateShop }) => {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-4 mb-6">
-                <BrandLogo className="w-14 h-14" />
+                <BrandLogo className="h-12 w-auto" dark={true} />
                 <div>
                    <h3 className="text-3xl font-black tracking-tighter uppercase text-white leading-none">
                      <span className="text-[#0033A0]">Tarang</span> <span className="text-[#D90429]">Electric</span>
