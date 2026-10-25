@@ -57,10 +57,12 @@ export const Shop = ({ onNavigateContact }) => {
   }, []);
 
   const filteredProducts = products.filter(item => {
+    // Ensure only official brochure products are displayed
+    const isBrochureItem = item.image_url && item.image_url.includes('/products/');
     const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
     const matchesSearch = (item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase())) || 
                           (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    return isBrochureItem && matchesCategory && matchesSearch;
   });
 
   // Extract multiple product images helper
@@ -195,12 +197,12 @@ export const Shop = ({ onNavigateContact }) => {
                 >
                   <div>
                     {/* Image */}
-                    <div className="h-52 bg-white relative overflow-hidden flex items-center justify-center p-3 border-b border-gray-100">
+                    <div className="h-56 sm:h-60 bg-white relative overflow-hidden flex items-center justify-center p-4 sm:p-5 border-b border-gray-100">
                       {displayImg ? (
                         <img 
                           src={displayImg} 
                           alt={product.name}
-                          className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                          className="max-w-full max-h-full object-contain group-hover:scale-[1.03] transition-transform duration-300"
                           onError={(e) => {
                             e.target.onerror = null;
                           }}
@@ -213,7 +215,7 @@ export const Shop = ({ onNavigateContact }) => {
                       )}
                       
                       {product.category && (
-                        <span className="absolute top-3 left-3 bg-[#0033A0] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                        <span className="absolute top-3 left-3 bg-[#0033A0] text-white text-[9px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm z-10 pointer-events-none">
                           {product.category}
                         </span>
                       )}
@@ -281,7 +283,7 @@ export const Shop = ({ onNavigateContact }) => {
                 
                 {/* Product Images Container with Toggle & Zoom Controls */}
                 <div className="md:col-span-6 flex flex-col">
-                  <div className="h-72 sm:h-80 bg-white rounded-2xl p-4 border border-gray-100 flex items-center justify-center relative shadow-sm overflow-hidden group/img">
+                  <div className="h-72 sm:h-80 bg-white rounded-2xl p-6 border border-gray-100 flex items-center justify-center relative shadow-sm overflow-hidden group/img">
                     
                     {/* Zoom Control Buttons */}
                     <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm p-1 rounded-xl shadow border border-gray-200 z-20">
