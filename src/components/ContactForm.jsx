@@ -278,6 +278,13 @@ export const ContactForm = () => {
                 </div>
 
                 <div className="pt-2 border-t border-gray-100">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Accounts</span>
+                  <a href="tel:+918866160111" className="font-bold text-[#0033A0] hover:underline text-base flex items-center gap-2">
+                    <Phone size={16} /> +91 88661 60111
+                  </a>
+                </div>
+
+                <div className="pt-2 border-t border-gray-100">
                   <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">Email Address</span>
                   <a href="mailto:tarangelectric@gmail.com" className="font-bold text-[#0033A0] hover:underline text-base flex items-center gap-2">
                     <Mail size={16} /> tarangelectric@gmail.com
