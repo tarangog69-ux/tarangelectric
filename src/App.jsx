@@ -686,17 +686,17 @@ const ElectricalPortfolio = ({ onNavigateShop }) => {
       title: "Control Panel Accessories",
       tag: "PANEL HARDWARE",
       icon: <Cpu className="w-8 h-8 text-[#0033A0]" />,
-      summary: "Precision panel accessories and enclosures for seamless switchboard wiring and secure enclosure mounting.",
+      summary: "Precision sheet metal enclosures, pilot controls, SMPS power units, and limit sensors for industrial switchboard builds.",
       items: [
-        "PVC Slotted Channels & Wiring Trunking",
-        "Cable Tie Mounts & Identification Tags",
-        "Self-Adhesive Panel Gaskets & Lacing Cords",
-        "DMC / Epoxy Busbar Insulators & Supports",
-        "Neutral Links & TPN Power Connectors",
-        "M.S. & Stainless Steel Panel Locks, Keys & Knobs",
-        "DIN-Rail Mounted Terminal Blocks & End Stops"
+        "Sheet Metal IP66 / IP55 IK10 Powder Coated Panel Enclosures",
+        "22.5mm Metallic Push Buttons & LED Pilot Indication Lights",
+        "Heavy-Duty Position Limit Switches & Cast Iron Foot Switches",
+        "DIN-Rail 24V Regulated Switching Power Supplies (SMPS)",
+        "Cylindrical Inductive Proximity Sensors & Optical Light Curtains",
+        "Waterproof Industrial Pin Plugs & Socket Receptacles",
+        "IS 15652 High-Voltage Electrical Insulating Safety Rubber Mats (33kV)"
       ],
-      brands: ["Elmex", "KSS", "Jigo", "Metal Craft (MCI)"]
+      brands: ["BCH Electric (Distributor)", "Schneider Electric", "Siemens", "Omron", "Autonics", "Teknic", "Mean Well"]
     },
     {
       id: "cables",
@@ -705,15 +705,15 @@ const ElectricalPortfolio = ({ onNavigateShop }) => {
       icon: <Cable className="w-8 h-8 text-[#D90429]" />,
       summary: "Certified high-conductivity conductors engineered for zero-loss power delivery and superior fire protection.",
       items: [
-        "Multi-core Industrial Flexible Copper Wires",
-        "FR / FRLS / ZHFR Fire-Retardant Building Wires",
-        "LT / HT Armoured Power Transmission Cables",
-        "Shielded Control & Instrumentation Cables",
-        "3-Core Flat Cables for Submersible Pumps",
-        "Solar DC Cables & Heat-Resistant Elastomeric Leads",
-        "Rubber Insulated & High-Flex Trailing Cables"
+        "1.1kV Multi-Core XLPE Insulated Copper & Aluminium Armoured Cables",
+        "11kV / 33kV Grade High Tension (HT) XLPE Armoured Power Cables",
+        "FR / FRLS Flame Retardant Pure Copper House & Building Wires",
+        "Multi-Strand Single & Multi-Core Flexible Copper Cables",
+        "Shielded & Braided Twisted Pair Instrumentation & Control Cables",
+        "Heavy-Duty Rubber Insulated Flexible Copper Welding Cables",
+        "High-Temperature PTFE Teflon & Braided Fibreglass Cables"
       ],
-      brands: ["Polycab", "Apar Anushakti", "GreatWhite", "SGI"]
+      brands: ["Polycab", "Srini Link", "Specialty Cables"]
     },
     {
       id: "switchgear",
@@ -722,32 +722,30 @@ const ElectricalPortfolio = ({ onNavigateShop }) => {
       icon: <Power className="w-8 h-8 text-[#0033A0]" />,
       summary: "Mission-critical motor starters, circuit breakers, and switches designed to protect equipment and ensure uptime.",
       items: [
-        "Air Circuit Breakers (ACB) & Moulded Case Breakers (MCCB)",
-        "Miniature Circuit Breakers (MCB) & Isolators",
-        "3-Pole & 4-Pole Power Contactors",
-        "Bimetallic Thermal Overload Relays (TOR)",
-        "Motor Protection Circuit Breakers (MPCB)",
-        "Rotary Cam Switches & Volt / Ammeter Selectors",
-        "Changeover & Auto-Transfer Switches (ATS)"
+        "3-Pole & 4-Pole Power Contactors & Citation Starters",
+        "Moulded Case Circuit Breakers (MCCB) & Air Circuit Breakers (ACB)",
+        "10kA C-Curve Miniature Circuit Breakers (MCB) & RCCB",
+        "Bi-Metallic Thermal Overload Relays (TOR) & Motor Starters (MPCB)",
+        "Switch Disconnector Fuse Units (SFU) & HRC Blade Fuses",
+        "Multi-Channel DIN-Rail Relay Interface Modules & General Relays",
+        "Sheet Metal Distribution Boards (DB) & 11KV/22KV AB Disconnectors"
       ],
-      brands: ["BCH Electric (Distributor)", "Schneider Electric", "Siemens", "L&T Switchgear", "Hager"]
+      brands: ["BCH Electric (Distributor)", "Schneider Electric", "Siemens", "Lauritz Knudsen (L&T)", "C&S Electric", "Hager", "Legrand"]
     },
     {
       id: "glands-lugs",
       title: "Cable Glands, Lugs & Terminals",
       tag: "TERMINATIONS",
       icon: <Layers className="w-8 h-8 text-[#D90429]" />,
-      summary: "Heavy-duty crimping hardware and glands for safe, corrosion-resistant, and high-conductivity connections.",
+      summary: "Heavy-duty crimping hardware, compression glands, and earthing solutions for safe, zero-resistance connections.",
       items: [
-        "Single & Double Compression Brass Cable Glands",
-        "Weatherproof PVC / Nylon Glands with Locknuts",
-        "Heavy-duty Electrolytic Copper Ring / Pin / Fork Lugs",
-        "Aluminium Tubular Crimping Ferrules & Inline Connectors",
-        "Bimetallic Friction-Welded Transition Lugs",
-        "Heat Shrinkable Terminations & Transition Sleeves",
-        "Brass Earth Tags & Shrouds"
+        "High-Conductivity Tinned Copper Terminal Lugs & Inline Ferrules",
+        "Single & Double Compression Heavy-Duty Brass Cable Glands",
+        "Chemical Earthing Copper Bonded & GI Electrodes with Compound",
+        "Perforated & Ladder Type Pre-Galvanized Industrial Cable Trays",
+        "Heavy-Duty Copper Crimping Lugs & Cable Terminations"
       ],
-      brands: ["Hex", "Jainson", "Kripson", "Brisk"]
+      brands: ["Ideal", "Certified Industrial Heavy-Duty"]
     },
     {
       id: "testing",
@@ -756,32 +754,32 @@ const ElectricalPortfolio = ({ onNavigateShop }) => {
       icon: <Gauge className="w-8 h-8 text-[#0033A0]" />,
       summary: "Professional diagnostic instruments for accurate field verification, phase detection, and preventive maintenance.",
       items: [
-        "True RMS Digital Multimeters with Backlight",
-        "AC / DC Digital Clamp Meters (up to 1000A)",
-        "Insulation Resistance Testers (Megger)",
-        "Digital Earth Resistance Testers & Phase Indicators",
-        "Non-Contact High-Voltage AC Detectors",
-        "Digital Panel Voltmeters & Ammeters",
-        "Laser Tachometers & Thermal Sensors"
+        "True RMS Auto-Ranging Digital Multimeters (Meco 108B+)",
+        "AC / DC 1000A True RMS Digital Clamp Meters (Meco 2502-V)",
+        "Single & Three-Phase Digital Flush-Mount Panel Voltmeters & Ammeters",
+        "Resin Cast Ring & Window Type Current Transformers (CT)",
+        "Laser Infrared Non-Contact Industrial Temperature Guns (IRT550)",
+        "Microprocessor PID Digital Temperature Controllers & Transmitters",
+        "Multi-Function Digital Energy Meters & Multi-Range Timers"
       ],
-      brands: ["Meco", "Kusam Meco", "Waco", "Neotech"]
+      brands: ["Meco", "Autonics", "Radix", "Selec"]
     },
     {
       id: "tools",
       title: "Crimping Tools & Enclosure Cooling",
       tag: "ASSEMBLY & WORKSHOP",
       icon: <Wrench className="w-8 h-8 text-[#D90429]" />,
-      summary: "Rugged contractor tools, enclosure ventilation fans, and accessories essential for clean, professional panel builds.",
+      summary: "Professional contractor tools, enclosure ventilation fans, and accessories essential for clean, reliable panel builds.",
       items: [
-        "Hydraulic & Heavy-Duty Ratchet Crimping Tools",
-        "High-Leverage Cable Cutters & Wire Strippers",
-        "Enclosure Fan Filters with Louvers (120mm to 250mm)",
-        "Panel Exhaust Fans & Thermostats",
-        "UV-Resistant Nylon Cable Ties & Tensioning Tools",
-        "Heat Guns & Polyolefin Heat Shrink Tubing",
-        "Ferruling Guns & Cable Marker Systems"
+        "Heavy-Duty Ball Bearing AC Panel Cooling Exhaust Fans",
+        "Metal Finger Guards & Dust Filter Louver Fan Grills",
+        "Heavy-Duty Ratchet Crimping Tools for Cable Terminals & Ferrules",
+        "High-Volume Low-Speed (HVLS) Energy-Efficient Industrial Ceiling Fans",
+        "Heavy-Duty Industrial BLDC Pedestal & Wall Mount Fans",
+        "Direct-Drive Centrifugal Industrial Blowers & Tube Axial Exhaust Fans",
+        "Professional Temperature-Controlled Soldering Stations & Kits"
       ],
-      brands: ["Jainson", "Sibass", "Elettro", "SFX"]
+      brands: ["Rexnord", "Bharat Rayan", "Rotech", "Ideal"]
     }
   ];
 
