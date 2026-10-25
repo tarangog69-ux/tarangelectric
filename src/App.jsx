@@ -480,8 +480,8 @@ const LogoMarquee = () => {
 
   return (
     <div className="bg-slate-950 py-10 overflow-hidden border-y border-white/10 relative shadow-2xl">
-      <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 inset-y-0 w-12 sm:w-24 md:w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 inset-y-0 w-12 sm:w-24 md:w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
 
 
       <div className="flex overflow-hidden whitespace-nowrap">
@@ -1178,6 +1178,19 @@ export default function App() {
       </main>
 
       <Footer setActivePage={setActivePage} />
+
+      {/* Floating WhatsApp Quick Contact Button for Mobile & Desktop */}
+      <a
+        href={`https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Tarang Electric, I would like to inquire about your electrical products.")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Tarang Electric on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 group"
+      >
+        <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 rounded-full animate-ping pointer-events-none" />
+        <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white pointer-events-none" />
+        <MessageCircle size={30} className="fill-white/20" />
+      </a>
     </div>
   );
 }
