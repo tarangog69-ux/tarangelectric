@@ -7,19 +7,86 @@ import {
 } from 'lucide-react';
 import { supabase } from '../supabaseClient';
 
-const INITIAL_CATEGORIES = ["All", "Industrial Cables", "Commercial Wires", "Electrical Goods", "Lighting & Switches"];
+export const getProductCategory = (p) => {
+  if (!p) return 'Electrical Goods';
+  const name = (p.name || '').toLowerCase();
+  const desc = (p.description || '').toLowerCase();
+  const t = name + ' ' + desc;
 
-export const Shop = ({ onNavigateContact }) => {
+  // Commercial Wires
+  if (p.category === 'Commercial Wires' || t.includes('house wire') || t.includes('domestic copper') || t.includes('single & multi-core flexible copper cable') || t.includes('flexible multi-core copper cable') || t.includes('flame retardant pure copper')) {
+    return 'Commercial Wires';
+  }
+
+  // Industrial Cables
+  if (p.category === 'Industrial Cables' || t.includes('armoured cable') || t.includes('ht xlpe') || t.includes('welding cable') || t.includes('tough rubber') || t.includes('instrumentation cable') || t.includes('wire harness') || t.includes('un-armoured control cable') || t.includes('shielded control') || t.includes('ptfe teflon') || t.includes('fibreglass')) {
+    return 'Industrial Cables';
+  }
+
+  // Testing Meters
+  if (t.includes('clamp meter') || t.includes('multimeter') || t.includes('current transformer') || t.includes('temperature gun') || t.includes('panel meter') || t.includes('voltmeter') || t.includes('ammeter') || t.includes('energy meter') || t.includes('process transmitter') || t.includes('temperature controller')) {
+    return 'Testing Meters';
+  }
+
+  // Tools & Cooling
+  if (t.includes('crimping tool') || t.includes('panel cooling') || t.includes('finger guard') || t.includes('centrifugal') || t.includes('industrial blower') || t.includes('ventilation fan') || t.includes('exhaust fan') || t.includes('fan grill') || t.includes('bldc') || t.includes('hvls') || t.includes('soldering') || t.includes('air circulator')) {
+    return 'Tools & Cooling';
+  }
+
+  // Glands, Lugs & Terminals
+  if (t.includes('cable gland') || t.includes('crimping lug') || t.includes('terminal lug') || t.includes('ferrule') || t.includes('chemical earthing') || t.includes('cable tray')) {
+    return 'Glands, Lugs & Terminals';
+  }
+
+  // Lighting & Switches
+  if (p.category === 'Lighting & Switches' || t.includes('high bay') || t.includes('flood light') || t.includes('street light') || t.includes('panel light') || t.includes('downlight') || t.includes('modular switch') || t.includes('lamp holder') || t.includes('cover plate') || t.includes('signal tower') || t.includes('warning beacon') || t.includes('pilot light') || t.includes('pilot indication')) {
+    return 'Lighting & Switches';
+  }
+
+  // Switchgear & Relays
+  if (t.includes('contactor') || t.includes('mcb') || t.includes('mccb') || t.includes('acb') || t.includes('rccb') || t.includes('mpcb') || t.includes('overload relay') || t.includes('motor starter') || t.includes('circuit breaker') || t.includes('switch disconnector') || t.includes('relay') || t.includes('sfu') || t.includes('air break') || t.includes('distribution board') || t.includes('hrc fuse')) {
+    return 'Switchgear & Relays';
+  }
+
+  // Control Panel Accessories
+  if (t.includes('enclosure') || t.includes('push button') || t.includes('limit switch') || t.includes('foot switch') || t.includes('selector switch') || t.includes('plug & socket') || t.includes('pendant station') || t.includes('rubber mat') || t.includes('fiberglass') || t.includes('stabilizer') || t.includes('solenoid valve') || t.includes('sensor') || t.includes('timer') || t.includes('smps') || t.includes('power supply') || t.includes('light curtain') || t.includes('buzzer')) {
+    return 'Control Panel Accessories';
+  }
+
+  return 'Electrical Goods';
+};
+
+export const SHOP_CATEGORIES = [
+  "All",
+  "Wires & Cables",
+  "Control Panel Accessories",
+  "Switchgear & Relays",
+  "Glands, Lugs & Terminals",
+  "Testing Meters",
+  "Tools & Cooling",
+  "Lighting & Switches",
+  "Industrial Cables",
+  "Commercial Wires",
+  "Electrical Goods"
+];
+
+export const Shop = ({ initialCategory = "All", onNavigateContact }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory || "All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
 
   const STORE_WHATSAPP_NUMBER = "919099560111";
+
+  useEffect(() => {
+    if (initialCategory) {
+      setSelectedCategory(initialCategory);
+    }
+  }, [initialCategory]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -56,13 +123,82 @@ export const Shop = ({ onNavigateContact }) => {
     fetchProducts();
   }, []);
 
+  const getCategoryCount = (cat) => {
+    return products.filter(item => {
+      const isBrochure = item.image_url && item.image_url.includes('/products/');
+      if (!isBrochure) return false;
+      if (cat === "All") return true;
+      const c = getProductCategory(item);
+      if (cat === "Wires & Cables" || cat === "Flexible Wires & Power Cables") {
+        return c === "Industrial Cables" || c === "Commercial Wires" || c === "Wires & Cables";
+      }
+      return c === cat;
+    }).length;
+  };
+
   const filteredProducts = products.filter(item => {
     // Ensure only official brochure products are displayed
     const isBrochureItem = item.image_url && item.image_url.includes('/products/');
-    const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
-    const matchesSearch = (item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase())) || 
-                          (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()));
-    return isBrochureItem && matchesCategory && matchesSearch;
+    if (!isBrochureItem) return false;
+
+    const itemCat = getProductCategory(item);
+    let matchesCategory = false;
+
+    if (!selectedCategory || selectedCategory === "All" || selectedCategory === "all") {
+      matchesCategory = true;
+    } else if (
+      selectedCategory === "Wires & Cables" || 
+      selectedCategory === "Flexible Wires & Power Cables" || 
+      selectedCategory === "cables"
+    ) {
+      matchesCategory = itemCat === "Industrial Cables" || itemCat === "Commercial Wires" || itemCat === "Wires & Cables";
+    } else if (
+      selectedCategory === "Control Panel Accessories" || 
+      selectedCategory === "panel"
+    ) {
+      matchesCategory = itemCat === "Control Panel Accessories";
+    } else if (
+      selectedCategory === "Switchgear & Relays" || 
+      selectedCategory === "Industrial Switchgear & Relays" || 
+      selectedCategory === "switchgear"
+    ) {
+      matchesCategory = itemCat === "Switchgear & Relays";
+    } else if (
+      selectedCategory === "Glands, Lugs & Terminals" || 
+      selectedCategory === "Cable Glands, Lugs & Terminals" || 
+      selectedCategory === "glands-lugs"
+    ) {
+      matchesCategory = itemCat === "Glands, Lugs & Terminals";
+    } else if (
+      selectedCategory === "Testing Meters" || 
+      selectedCategory === "Testing & Measuring Instruments" || 
+      selectedCategory === "testing"
+    ) {
+      matchesCategory = itemCat === "Testing Meters";
+    } else if (
+      selectedCategory === "Tools & Cooling" || 
+      selectedCategory === "Crimping Tools & Enclosure Cooling" || 
+      selectedCategory === "tools"
+    ) {
+      matchesCategory = itemCat === "Tools & Cooling";
+    } else if (selectedCategory === "Industrial Cables") {
+      matchesCategory = itemCat === "Industrial Cables";
+    } else if (selectedCategory === "Commercial Wires") {
+      matchesCategory = itemCat === "Commercial Wires";
+    } else if (selectedCategory === "Lighting & Switches") {
+      matchesCategory = itemCat === "Lighting & Switches";
+    } else if (selectedCategory === "Electrical Goods") {
+      matchesCategory = itemCat === "Electrical Goods";
+    } else {
+      matchesCategory = itemCat.toLowerCase() === selectedCategory.toLowerCase() ||
+                        (item.category && item.category.toLowerCase() === selectedCategory.toLowerCase());
+    }
+
+    const matchesSearch = !searchQuery || 
+      (item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase())) || 
+      (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    return matchesCategory && matchesSearch;
   });
 
   // Extract multiple product images helper
@@ -136,20 +272,34 @@ export const Shop = ({ onNavigateContact }) => {
         <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-12">
           
           {/* Category Tabs */}
-          <div className="flex items-center gap-3 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
-            {INITIAL_CATEGORIES.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all ${
-                  selectedCategory === cat 
-                    ? 'bg-[#0033A0] text-white shadow-md' 
-                    : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="flex items-center gap-2.5 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+            {SHOP_CATEGORIES.map(cat => {
+              const count = getCategoryCount(cat);
+              const isSelected = selectedCategory === cat || 
+                (cat === "Wires & Cables" && (selectedCategory === "Flexible Wires & Power Cables" || selectedCategory === "cables")) ||
+                (cat === "Control Panel Accessories" && selectedCategory === "panel") ||
+                (cat === "Switchgear & Relays" && selectedCategory === "switchgear") ||
+                (cat === "Glands, Lugs & Terminals" && selectedCategory === "glands-lugs") ||
+                (cat === "Testing Meters" && selectedCategory === "testing") ||
+                (cat === "Tools & Cooling" && selectedCategory === "tools");
+
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 shadow-sm ${
+                    isSelected
+                      ? 'bg-[#0033A0] text-white shadow-md' 
+                      : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                  }`}
+                >
+                  <span>{cat}</span>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'}`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Search Box */}
@@ -214,11 +364,9 @@ export const Shop = ({ onNavigateContact }) => {
                         </div>
                       )}
                       
-                      {product.category && (
-                        <span className="absolute top-3 left-3 bg-[#0033A0] text-white text-[9px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm z-10 pointer-events-none">
-                          {product.category}
-                        </span>
-                      )}
+                      <span className="absolute top-3 left-3 bg-[#0033A0] text-white text-[9px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm z-10 pointer-events-none">
+                        {getProductCategory(product)}
+                      </span>
                     </div>
 
                     {/* Info */}
@@ -362,11 +510,9 @@ export const Shop = ({ onNavigateContact }) => {
                       </div>
                     )}
 
-                    {selectedProduct.category && (
-                      <span className="absolute top-3 left-3 bg-[#0033A0] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow z-10">
-                        {selectedProduct.category}
-                      </span>
-                    )}
+                    <span className="absolute top-3 left-3 bg-[#0033A0] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow z-10">
+                      {getProductCategory(selectedProduct)}
+                    </span>
                   </div>
 
                   {/* Thumbnail Selector for Multiple Photos */}

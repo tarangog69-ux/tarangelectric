@@ -43,7 +43,7 @@ const BrandLogo = ({ className = "w-10 h-10" }) => (
   </svg>
 );
 
-const Navbar = ({ activePage, setActivePage }) => {
+const Navbar = ({ activePage, setActivePage, onNavigateShop }) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -58,6 +58,15 @@ const Navbar = ({ activePage, setActivePage }) => {
     { name: "Shop", key: "shop" },
     { name: "Contact", key: "contact" }
   ];
+
+  const handleNavClick = (key) => {
+    if (key === 'shop') {
+      if (onNavigateShop) onNavigateShop('All');
+      else setActivePage('shop');
+    } else {
+      setActivePage(key);
+    }
+  };
 
   return (
     <>
@@ -95,7 +104,7 @@ const Navbar = ({ activePage, setActivePage }) => {
               return (
                 <button
                   key={item.key}
-                  onClick={() => setActivePage(item.key)}
+                  onClick={() => handleNavClick(item.key)}
                   className={`text-sm font-bold uppercase tracking-widest relative overflow-hidden group py-1 ${
                     isDarkHeader ? (isActive ? 'text-[#D90429]' : 'text-[#0A1128]') : (isActive ? 'text-[#D90429]' : 'text-white')
                   }`}
@@ -148,7 +157,7 @@ const Navbar = ({ activePage, setActivePage }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 + 0.3 }}
                   onClick={() => {
-                    setActivePage(item.key);
+                    handleNavClick(item.key);
                     setMenuOpen(false);
                   }}
                   className={`text-4xl md:text-6xl font-black uppercase tracking-tighter transition-colors ${
@@ -621,7 +630,7 @@ const Divisions = ({ onNavigateShop }) => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: i * 0.15, duration: 1, ease: EASE }}
               whileHover={{ y: -8 }}
-              onClick={onNavigateShop}
+              onClick={() => onNavigateShop(div.title)}
               className="group relative p-8 md:p-12 bg-white rounded-2xl overflow-hidden shadow-xl shadow-gray-200/50 cursor-pointer border border-gray-100 flex flex-col justify-between"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${div.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out`} />
@@ -650,7 +659,13 @@ const Divisions = ({ onNavigateShop }) => {
                 </div>
               </div>
               
-              <div className="relative z-10 mt-8 pt-4 flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-[#0033A0] group-hover:text-white transition-colors duration-500">
+              <div 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavigateShop(div.title);
+                }}
+                className="relative z-10 mt-8 pt-4 flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-[#0033A0] group-hover:text-white transition-colors duration-500"
+              >
                 Explore Category <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
               </div>
             </motion.div>
@@ -792,148 +807,136 @@ const ElectricalPortfolio = ({ onNavigateShop }) => {
           </p>
         </div>
 
-        {/* Filter Tabs */}
+        {/* Category Tabs: Redirect to Shop with specific category */}
         <div className="flex flex-wrap items-center gap-2 mb-12 border-b border-gray-200 pb-4">
           <button
-            onClick={() => setActiveTab("all")}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === "all"
-                ? "bg-[#0A1128] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
+            onClick={() => onNavigateShop("All")}
+            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-[#0A1128] text-white hover:bg-[#0033A0] shadow-sm flex items-center gap-1.5 group cursor-pointer"
           >
-            All Products ({categories.length})
+            <span>All Products</span>
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform opacity-70" />
           </button>
           <button
-            onClick={() => setActiveTab("panel")}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === "panel"
-                ? "bg-[#0033A0] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
+            onClick={() => onNavigateShop("Control Panel Accessories")}
+            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-gray-100 text-gray-700 hover:bg-[#0033A0] hover:text-white shadow-sm flex items-center gap-1.5 group cursor-pointer"
           >
-            Control Panel Accessories
+            <span>Control Panel Accessories</span>
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform opacity-70" />
           </button>
           <button
-            onClick={() => setActiveTab("cables")}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === "cables"
-                ? "bg-[#D90429] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
+            onClick={() => onNavigateShop("Wires & Cables")}
+            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-gray-100 text-gray-700 hover:bg-[#D90429] hover:text-white shadow-sm flex items-center gap-1.5 group cursor-pointer"
           >
-            Wires &amp; Cables
+            <span>Wires &amp; Cables</span>
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform opacity-70" />
           </button>
           <button
-            onClick={() => setActiveTab("switchgear")}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === "switchgear"
-                ? "bg-[#0033A0] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
+            onClick={() => onNavigateShop("Switchgear & Relays")}
+            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-gray-100 text-gray-700 hover:bg-[#0033A0] hover:text-white shadow-sm flex items-center gap-1.5 group cursor-pointer"
           >
-            Switchgear &amp; Relays
+            <span>Switchgear &amp; Relays</span>
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform opacity-70" />
           </button>
           <button
-            onClick={() => setActiveTab("glands-lugs")}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === "glands-lugs"
-                ? "bg-[#D90429] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
+            onClick={() => onNavigateShop("Glands, Lugs & Terminals")}
+            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-gray-100 text-gray-700 hover:bg-[#D90429] hover:text-white shadow-sm flex items-center gap-1.5 group cursor-pointer"
           >
-            Glands, Lugs &amp; Terminals
+            <span>Glands, Lugs &amp; Terminals</span>
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform opacity-70" />
           </button>
           <button
-            onClick={() => setActiveTab("testing")}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === "testing"
-                ? "bg-[#0033A0] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
+            onClick={() => onNavigateShop("Testing Meters")}
+            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-gray-100 text-gray-700 hover:bg-[#0033A0] hover:text-white shadow-sm flex items-center gap-1.5 group cursor-pointer"
           >
-            Testing Meters
+            <span>Testing Meters</span>
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform opacity-70" />
           </button>
           <button
-            onClick={() => setActiveTab("tools")}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === "tools"
-                ? "bg-[#D90429] text-white shadow-md"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
+            onClick={() => onNavigateShop("Tools & Cooling")}
+            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-gray-100 text-gray-700 hover:bg-[#D90429] hover:text-white shadow-sm flex items-center gap-1.5 group cursor-pointer"
           >
-            Tools &amp; Cooling
+            <span>Tools &amp; Cooling</span>
+            <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform opacity-70" />
           </button>
         </div>
 
         {/* Product Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredCategories.map((cat) => (
-            <div
-              key={cat.id}
-              className="group bg-[#F8F9FA] rounded-2xl p-8 border border-gray-200/80 hover:border-gray-300 hover:bg-white hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-xl bg-white border border-gray-200/60 shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    {cat.icon}
-                  </div>
-                  <span className="text-[0.65rem] font-black tracking-widest uppercase px-3 py-1 bg-white border border-gray-200 text-gray-500 rounded-full">
-                    {cat.tag}
-                  </span>
-                </div>
+          {categories.map((cat) => {
+            const targetCategory = cat.id === 'cables' ? 'Wires & Cables' : cat.title;
 
-                <h3 className="text-2xl font-black text-[#0A1128] mb-3 group-hover:text-[#0033A0] transition-colors tracking-tight">
-                  {cat.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6 font-normal">
-                  {cat.summary}
-                </p>
-
-                {/* Sub-items list */}
-                <div className="mb-6 space-y-2">
-                  <p className="text-xs font-bold text-[#0A1128] uppercase tracking-wider mb-2">
-                    Key Electrical Items:
-                  </p>
-                  {cat.items.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-gray-700">
-                      <CheckCircle2 size={13} className="text-[#0033A0] shrink-0 mt-0.5" />
-                      <span>{item}</span>
+            return (
+              <div
+                key={cat.id}
+                onClick={() => onNavigateShop(targetCategory)}
+                className="group bg-[#F8F9FA] rounded-2xl p-8 border border-gray-200/80 hover:border-[#0033A0]/40 hover:bg-white hover:shadow-2xl transition-all duration-300 flex flex-col justify-between cursor-pointer"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-14 h-14 rounded-xl bg-white border border-gray-200/60 shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {cat.icon}
                     </div>
-                  ))}
+                    <span className="text-[0.65rem] font-black tracking-widest uppercase px-3 py-1 bg-white border border-gray-200 text-gray-500 rounded-full">
+                      {cat.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl font-black text-[#0A1128] mb-3 group-hover:text-[#0033A0] transition-colors tracking-tight">
+                    {cat.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 font-normal">
+                    {cat.summary}
+                  </p>
+
+                  {/* Sub-items list */}
+                  <div className="mb-6 space-y-2">
+                    <p className="text-xs font-bold text-[#0A1128] uppercase tracking-wider mb-2">
+                      Key Electrical Items:
+                    </p>
+                    {cat.items.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs text-gray-700">
+                        <CheckCircle2 size={13} className="text-[#0033A0] shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Associated Brands */}
+                  <div className="pt-4 border-t border-gray-200">
+                    <p className="text-[0.7rem] font-bold text-gray-400 uppercase tracking-widest mb-1">
+                      Trusted Brands:
+                    </p>
+                    <p className="text-xs font-semibold text-[#0A1128]">
+                      {cat.brands.join(" • ")}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Associated Brands */}
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-[0.7rem] font-bold text-gray-400 uppercase tracking-widest mb-1">
-                    Trusted Brands:
-                  </p>
-                  <p className="text-xs font-semibold text-[#0A1128]">
-                    {cat.brands.join(" • ")}
-                  </p>
+                {/* Action Buttons */}
+                <div className="mt-8 pt-4 border-t border-gray-200 flex items-center justify-between gap-3">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onNavigateShop(targetCategory);
+                    }}
+                    className="text-xs font-black uppercase tracking-wider text-[#0033A0] group-hover:text-[#D90429] flex items-center gap-1 transition-colors"
+                  >
+                    View in Shop <ChevronRight size={14} />
+                  </button>
+
+                  <a
+                    href={`https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hello Tarang Electric, I want to inquire about availability and pricing for: ${cat.title}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white border border-emerald-200 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all"
+                  >
+                    <MessageCircle size={13} /> Inquire
+                  </a>
                 </div>
               </div>
-
-              {/* Action Buttons */}
-              <div className="mt-8 pt-4 border-t border-gray-200 flex items-center justify-between gap-3">
-                <button
-                  onClick={onNavigateShop}
-                  className="text-xs font-black uppercase tracking-wider text-[#0033A0] hover:text-[#D90429] flex items-center gap-1 transition-colors"
-                >
-                  View in Shop <ChevronRight size={14} />
-                </button>
-
-                <a
-                  href={`https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hello Tarang Electric, I want to inquire about availability and pricing for: ${cat.title}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white border border-emerald-200 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all"
-                >
-                  <MessageCircle size={13} /> Inquire
-                </a>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1059,7 +1062,7 @@ const ElectricalRFQBanner = ({ onNavigateContact }) => {
   );
 };
 
-const Footer = ({ setActivePage }) => {
+const Footer = ({ setActivePage, onNavigateShop }) => {
   return (
     <footer className="bg-[#0A1128] pt-24 pb-12 relative overflow-hidden text-white border-t border-white/10">
       <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none flex justify-center opacity-[0.03]">
@@ -1118,7 +1121,13 @@ const Footer = ({ setActivePage }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => setActivePage('shop')} className="hover:text-white transition-colors uppercase tracking-wider">
+                <button 
+                  onClick={() => {
+                    if (onNavigateShop) onNavigateShop('All');
+                    else setActivePage('shop');
+                  }} 
+                  className="hover:text-white transition-colors uppercase tracking-wider"
+                >
                   Shop Catalog
                 </button>
               </li>
@@ -1142,23 +1151,30 @@ const Footer = ({ setActivePage }) => {
 
 export default function App() {
   const [activePage, setActivePage] = useState('home');
+  const [shopCategory, setShopCategory] = useState('All');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activePage]);
 
+  const handleNavigateShop = (category = 'All') => {
+    setShopCategory(category);
+    setActivePage('shop');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#0A1128] font-sans selection:bg-[#D90429] selection:text-white">
-      <Navbar activePage={activePage} setActivePage={setActivePage} />
+      <Navbar activePage={activePage} setActivePage={setActivePage} onNavigateShop={handleNavigateShop} />
       
       <main className="pt-0">
         {activePage === 'home' && (
           <>
-            <Hero onExplore={() => setActivePage('shop')} />
+            <Hero onExplore={() => handleNavigateShop('All')} />
             <LogoMarquee />
             <QualityBanner />
-            <Divisions onNavigateShop={() => setActivePage('shop')} />
-            <ElectricalPortfolio onNavigateShop={() => setActivePage('shop')} />
+            <Divisions onNavigateShop={handleNavigateShop} />
+            <ElectricalPortfolio onNavigateShop={handleNavigateShop} />
             <IndustrialApplications />
             <ElectricalRFQBanner onNavigateContact={() => setActivePage('contact')} />
           </>
@@ -1166,7 +1182,10 @@ export default function App() {
 
         {activePage === 'shop' && (
           <div className="pt-24">
-            <Shop onNavigateContact={() => setActivePage('contact')} />
+            <Shop 
+              initialCategory={shopCategory} 
+              onNavigateContact={() => setActivePage('contact')} 
+            />
           </div>
         )}
 
@@ -1177,7 +1196,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer setActivePage={setActivePage} />
+      <Footer setActivePage={setActivePage} onNavigateShop={handleNavigateShop} />
 
       {/* Floating WhatsApp Quick Contact Button for Mobile & Desktop */}
       <a
