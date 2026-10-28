@@ -420,12 +420,16 @@ export const Shop = ({ initialCategory = "All", onNavigateContact }) => {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-3xl p-6 md:p-8 max-w-3xl w-full shadow-2xl relative border border-gray-100 text-[#0A1128] max-h-[92vh] overflow-y-auto"
             >
-              <button
-                onClick={() => setSelectedProduct(null)}
-                className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-full bg-gray-100 hover:bg-gray-200 z-20"
-              >
-                <X size={20} />
-              </button>
+              {/* Close Button - positioned outside image area on mobile */}
+              <div className="flex items-center justify-between mb-4 md:mb-0">
+                <div className="md:hidden" />
+                <button
+                  onClick={() => setSelectedProduct(null)}
+                  className="md:absolute md:top-6 md:right-6 text-gray-400 hover:text-gray-900 transition-colors p-2 rounded-full bg-gray-100 hover:bg-gray-200 z-20 ml-auto"
+                >
+                  <X size={20} />
+                </button>
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
                 
@@ -434,7 +438,7 @@ export const Shop = ({ initialCategory = "All", onNavigateContact }) => {
                   <div className="h-72 sm:h-80 bg-white rounded-2xl p-6 border border-gray-100 flex items-center justify-center relative shadow-sm overflow-hidden group/img">
                     
                     {/* Zoom Control Buttons */}
-                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm p-1 rounded-xl shadow border border-gray-200 z-20">
+                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm p-1 rounded-xl shadow border border-gray-200 z-10">
                       <button
                         onClick={handleZoomIn}
                         disabled={zoomLevel >= 2.5}
